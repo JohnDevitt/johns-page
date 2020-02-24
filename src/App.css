@@ -1,5 +1,5 @@
 .container {
-  padding: 1rem;
+  padding: 2rem;
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -8,16 +8,21 @@
 }
 
 .typewriter {
-  padding: 1rem;
   flex-basis: 95%;
   display: flex;
   align-items: center;
   text-align: center;
-  font-size: 5rem;
+  font-size: 3rem;
   color: white;
   font-family: "Source Code Pro", Menlo, Monaco, Consolas, "Courier New",
     monospace;
   font-weight: 300;
+}
+
+@media only screen and (min-width: 768px) {
+  .typewriter {
+    font-size: 5rem;
+  }
 }
 
 .links {
@@ -26,6 +31,6 @@
 }
 
 a {
-  margin: 2rem;
+  margin-right: 3rem;
   color: white;
 }
