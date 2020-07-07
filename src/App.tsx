@@ -1,87 +1,67 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-const Typewriter = require("typewriter-effect");
-const Scrambler = require("react-text-scrambler");
+import "antd/dist/antd.css";
+import { Container } from "./styledComponents";
+import debounce from "lodash.debounce";
+
+import Experience from "./components/Experience";
+import SnapScrollSection from "./components/SnapScollSection";
+import TypewriterTitle from "./components/TypewriterTitle";
+import IntroSection from "./components/IntroSection";
+import FooterLinks from "./components/FooterLinks";
+import Technologies from "./components/Technologies";
 
 function App() {
   const [title, setTitle] = useState("");
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => {
-        console.log(entries);
-        const currentSection = entries.findIndex(
-          entry => entry.intersectionRatio > 0.5
-        );
-        const titles = ["", "Technologies", "Experience", "Projects"];
-        setTitle(titles[currentSection]);
-      },
-      {
-        root: document.querySelector(".container"),
-        threshold: 0.34
-      }
-    );
 
-    let sections = document.querySelectorAll("section");
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-  });
+  useEffect(() => {
+    const introSection = document.getElementById("introSection")!;
+    const technolgies = document.getElementById("technologies")!;
+    const experience = document.getElementById("experience")!;
+
+    const handleScroll = debounce(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const intersectionRatios = entries.map(
+            (entry) => entry.intersectionRatio
+          );
+          const currentSection =
+            intersectionRatios.indexOf(Math.max(...intersectionRatios)) || 0;
+
+          const titles = ["", "Technologies", "Experience"];
+          setTitle(titles[currentSection]);
+        },
+        {
+          root: document.querySelector(".container"),
+          threshold: 0,
+        }
+      );
+      observer.observe(introSection);
+      observer.observe(technolgies);
+      observer.observe(experience);
+    }, 50);
+
+    const scrollContainer = document.getElementById("scrollContainer")!;
+    scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="container">
-      <header>
-        <Scrambler.Scrambler text={title} renderIn={1750} />
-      </header>
-
-      <section className="sectionOne">
-        <Typewriter
-          onInit={(typewriter: any) => {
-            typewriter
-              .typeString("Hi, I'm John")
-              .pauseFor(2500)
-              .deleteAll(35)
-              .start()
-              .typeString("I'm a full stack developer")
-              .pauseFor(2500)
-              .deleteAll(35)
-              .start()
-              .typeString("Welcome to my page")
-              .pauseFor(2500);
-          }}
-          options={{
-            cursor: "_",
-            autoStart: true,
-            loop: false
-          }}
-        />
-      </section>
-
-      <section className="sectionTwo">
-        <ul>
-          <li>TypeScript</li>
-          <li>React</li>
-          <li>Redux</li>
-          <li>Apollo Client</li>
-          <li>Kotlin</li>
-          <li>Spring</li>
-          <li>Terraform</li>
-        </ul>
-      </section>
-
-      <section className="sectionThree">
-        <ul>
-          <li>Aol</li>
-          <li>Zynstra</li>
-          <li>EuroOne</li>
-          <li>BCG Digital Ventures</li>
-        </ul>
-      </section>
-
-      <footer>
-        <a href="https://www.linkedin.com/in/john-devitt/">Linkedin</a>
-        <a href="https://github.com/JohnDevitt">Github</a>
-      </footer>
-    </div>
+    <>
+      <TypewriterTitle title={title} />
+      <Container id="scrollContainer">
+        <SnapScrollSection>
+          <IntroSection />
+        </SnapScrollSection>
+        <SnapScrollSection light>
+          <Technologies />
+        </SnapScrollSection>
+        <SnapScrollSection>
+          <Experience />
+        </SnapScrollSection>
+        <FooterLinks />
+      </Container>
+    </>
   );
 }
 

@@ -1,17 +1,15 @@
-html {
-  height: 100%;
-}
-
+html,
 body {
-  margin: 0;
   font-family: "Source Code Pro", Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-  height: 100%;
+    monospace !important;
+  font-weight: 300;
+  background: #212021;
+  font-size: 16px;
 }
 
-#root {
-  height: 100%;
-  display: flex;
-  --dark: #212021;
-  --light: #fff;
+@media only screen and (max-width: 600px) {
+  html,
+  body {
+    font-size: 14px;
+  }
 }
