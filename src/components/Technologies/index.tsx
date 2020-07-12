@@ -1,76 +1,87 @@
-import React from "react";
-import { Row } from "antd";
+import React from 'react'
+import { Row } from 'antd'
+
 import {
   Container,
   Image,
   Title,
   StyledCol,
   TechHeader,
-} from "./styledComponents";
-import reactSVG from "./react.svg";
-import typescriptSVG from "./typescript.svg";
-import reduxSVG from "./redux.svg";
-import apolloSVG from "./apollo.svg";
-import nextSVG from "./next.svg";
-import kotlinSVG from "./kotlin.svg";
-import springSVG from "./spring.svg";
-import terraformPNG from "./terraform.png";
+} from './styledComponents'
+import reactSVG from './react.svg'
+import typescriptSVG from './typescript.svg'
+import reduxSVG from './redux.svg'
+import apolloSVG from './apollo.svg'
+import nextSVG from './next.svg'
+import kotlinSVG from './kotlin.svg'
+import springSVG from './spring.svg'
+import terraformPNG from './terraform.png'
+
+type TechItem = {
+  title: string
+  image: string
+}
+
+type TechList = {
+  techList: Array<TechItem>
+  title: string
+}
 
 const Technologies: React.FC = () => {
   const frontend = [
     {
-      title: "React",
+      title: 'React',
       image: reactSVG,
     },
     {
-      title: "Typescript",
+      title: 'Typescript',
       image: typescriptSVG,
     },
     {
-      title: "Redux",
+      title: 'Redux',
       image: reduxSVG,
     },
     {
-      title: "Apollo Client",
+      title: 'Apollo Client',
       image: apolloSVG,
     },
     {
-      title: "Next.js",
+      title: 'Next.js',
       image: nextSVG,
     },
-  ];
+  ]
 
   const backend = [
     {
-      title: "Kotlin",
+      title: 'Kotlin',
       image: kotlinSVG,
     },
     {
-      title: "Spring",
+      title: 'Spring',
       image: springSVG,
     },
-  ];
+  ]
 
   const infrastructure = [
     {
-      title: "Terraform",
+      title: 'Terraform',
       image: terraformPNG,
     },
-  ];
+  ]
 
-  const TechList = ({ techList, title }: any) => (
+  const TechList: React.FC<TechList> = ({ techList, title }) => (
     <>
       <TechHeader>{title}</TechHeader>
       <Row gutter={[64, 64]} justify="start">
-        {techList.map((tech: any) => (
-          <StyledCol xs={12} md={8} lg={8} xl={4}>
-            <Image src={tech.image} alt={tech.title} />
+        {techList.map((tech: TechItem) => (
+          <StyledCol key={tech.title} lg={8} md={8} xl={4} xs={12}>
+            <Image alt={tech.title} src={tech.image} />
             <Title>{tech.title}</Title>
           </StyledCol>
         ))}
       </Row>
     </>
-  );
+  )
 
   return (
     <Container id="technologies">
@@ -78,7 +89,7 @@ const Technologies: React.FC = () => {
       <TechList techList={backend} title="Backend" />
       <TechList techList={infrastructure} title="Infrastructure" />
     </Container>
-  );
-};
+  )
+}
 
-export default Technologies;
+export default Technologies
