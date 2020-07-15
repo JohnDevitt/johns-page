@@ -8,6 +8,7 @@ import TypewriterTitle from './components/TypewriterTitle'
 import IntroSection from './components/IntroSection'
 import FooterLinks from './components/FooterLinks'
 import Technologies from './components/Technologies'
+import ContactForm from './components/ContactForm'
 
 const App: React.FC = () => {
   const [title, setTitle] = useState('')
@@ -16,6 +17,7 @@ const App: React.FC = () => {
     const introSection = document.getElementById('introSection')!
     const technolgies = document.getElementById('technologies')!
     const experience = document.getElementById('experience')!
+    const contactMe = document.getElementById('contactMe')!
 
     const handleScroll = debounce(() => {
       const observer = new IntersectionObserver(
@@ -26,7 +28,7 @@ const App: React.FC = () => {
           const currentSection =
             intersectionRatios.indexOf(Math.max(...intersectionRatios)) || 0
 
-          const titles = ['', 'Technologies', 'Experience']
+          const titles = ['', 'Technologies', 'Experience', 'Contact Me']
           setTitle(titles[currentSection])
         },
         {
@@ -37,6 +39,7 @@ const App: React.FC = () => {
       observer.observe(introSection)
       observer.observe(technolgies)
       observer.observe(experience)
+      observer.observe(contactMe)
     }, 50)
 
     const scrollContainer = document.getElementById('scrollContainer')!
@@ -57,6 +60,9 @@ const App: React.FC = () => {
         </Section>
         <Section>
           <Experience />
+        </Section>
+        <Section>
+          <ContactForm />
         </Section>
         <FooterLinks />
       </Container>
