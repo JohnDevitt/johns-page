@@ -30,12 +30,17 @@ const ContactForm = () => {
 
   const formItemLayout = {
     labelCol: { span: 4 },
-    wrapperCol: { span: 20 },
+    wrapperCol: {
+      span: 20,
+      xs: { span: 24 },
+      sm: { span: 24 },
+      md: { span: 24 },
+    },
   }
 
   const formTailLayout = {
     labelCol: { span: 4 },
-    wrapperCol: { span: 8, offset: 4 },
+    wrapperCol: { span: 8, offset: 4, xs: { offset: 0 } },
   }
 
   return (

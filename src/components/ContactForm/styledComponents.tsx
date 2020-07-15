@@ -10,6 +10,9 @@ export const Container = styled.div`
 `
 
 export const FormItem = styled(Form.Item)`
+  @media (max-width: 767px) {
+    width: 20rem;
+  }
   width: 40rem;
   padding: 0.5rem 0rem;
 `
