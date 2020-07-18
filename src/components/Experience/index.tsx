@@ -3,10 +3,10 @@ import { Row } from 'antd'
 import Meta from 'antd/lib/card/Meta'
 
 import { Container, StyledCol, Image, StyledCard } from './styledComponents'
-import aol from './aol.png'
-import zynstra from './zynstra.png'
-import prodigyai from './prodigyai.png'
-import bcgdv from './bcgdv.png'
+import aol from './aol.svg'
+import zynstra from './zynstra.webp'
+import prodigyai from './prodigyai.svg'
+import bcgdv from './bcgdv.svg'
 
 const Experience: React.FC = () => {
   const workExperience = [

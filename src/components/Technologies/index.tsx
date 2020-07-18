@@ -15,7 +15,7 @@ import apolloSVG from './apollo.svg'
 import nextSVG from './next.svg'
 import kotlinSVG from './kotlin.svg'
 import springSVG from './spring.svg'
-import terraformPNG from './terraform.png'
+import terraformSVG from './terraform.svg'
 
 type TechItem = {
   title: string
@@ -65,7 +65,7 @@ const Technologies: React.FC = () => {
   const infrastructure = [
     {
       title: 'Terraform',
-      image: terraformPNG,
+      image: terraformSVG,
     },
   ]
 
